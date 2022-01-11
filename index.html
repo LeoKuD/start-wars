@@ -9,7 +9,56 @@
     <title>Document</title>
   </head>
   <body>
-    Star Wars
-    <script src="./script.js"></script>
+    <div class="contain">
+      <header class="header">
+        <div class="logo">
+          <div class="logo__img"></div>
+          <div class="logo-text">
+            <h1 class="logo-text__title">Star Wars library</h1>
+            <h6 class="logo-description">all about star wars</h6>
+          </div>
+        </div>
+        <div class="search">
+          <form action="">
+            <input type="text" class="search__input" />
+          </form>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <aside class="left_menu">
+          <nav class="menu">
+            <ul>
+              <li class="menu__item">
+                <h2 class="menu__text">People</h2>
+              </li>
+              <li class="menu__item">
+                <h2>Planets</h2>
+              </li>
+              <li class="menu__item">
+                <h2>Films</h2>
+              </li>
+              <li class="menu__item">
+                <h2>Species</h2>
+              </li>
+              <li class="menu__item">
+                <h2>Vehicles</h2>
+              </li>
+              <li class="menu__item">
+                <h2>Starships</h2>
+              </li>
+            </ul>
+          </nav>
+          <nav class="nav-buttom">
+            <ul id="navigation"></ul>
+          </nav>
+        </aside>
+        <main class="item-wrapper"></main>
+      </div>
+    </div>
+
+    <script type="module" src="./js/api.js"></script>
+    <script type="module" src="./js/library.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
