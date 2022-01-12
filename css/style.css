@@ -40,17 +40,9 @@ h6 {
   padding: 0 50px;
 }
 
-.visible {
-  display: block !important;
-}
-
 .active {
   border: 2px solid #072227;
   box-shadow: 5px 5px 15px 5px rgba(7, 34, 39, 0.5);
-}
-
-.more-info {
-  display: none;
 }
 
 .header {
@@ -101,7 +93,7 @@ h6 {
   cursor: pointer;
 }
 
-.item-wrapper {
+.cards-wrapper {
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
@@ -109,12 +101,20 @@ h6 {
   justify-content: space-between;
   padding: 0 1rem;
 }
-.item-wrapper .item {
+
+.cards-wrapper__card {
   flex: 0 1 300px;
   background-color: #bdd2b6;
   border-radius: 0.5rem;
   text-align: center;
   cursor: pointer;
+}
+.cards-wrapper__card h4 {
+  display: none;
+}
+
+.cards-wrapper__card_more-info h4 {
+  display: block;
 }
 
 .nav-buttom {

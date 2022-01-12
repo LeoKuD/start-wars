@@ -1,4 +1,4 @@
-export const PEOPLE_LIB = {
+ const PEOPLE_LIB = {
   name: 'Name',
   birth_year: 'Birth year',
   gender: 'Gender',
@@ -6,7 +6,7 @@ export const PEOPLE_LIB = {
   eye_color: 'Eye color',
 };
 
-export const PLANETS_LIB = {
+ const PLANETS_LIB = {
   name: 'Name',
   rotation_period: 'Rotation period',
   diameter: 'Diameter',
@@ -14,14 +14,14 @@ export const PLANETS_LIB = {
   gravity: 'Gravity',
 };
 
-export const FILMS_LIB = {
+ const FILMS_LIB = {
   title: 'Title',
   director: 'Director',
   producer: 'Producer',
   release_date: 'Release date',
 };
 
-export const SPECIES_LIB = {
+ const SPECIES_LIB = {
   name: 'Name',
   classification: 'Classification',
   average_height: 'Average height',
@@ -29,7 +29,7 @@ export const SPECIES_LIB = {
   language: 'Language',
 };
 
-export const VEHICLES_LIB = {
+ const VEHICLES_LIB = {
   name: 'Name',
   model: 'Model',
   manufacturer: 'Manufacturer',
@@ -37,7 +37,7 @@ export const VEHICLES_LIB = {
   crew: 'Crew',
 };
 
-export const STARSHIPS_LIB = {
+ const STARSHIPS_LIB = {
   name: 'Name',
   model: 'Model',
   manufacturer: 'Manufacturer',
@@ -45,7 +45,7 @@ export const STARSHIPS_LIB = {
   passengers: 'Passengers',
 };
 
-export const PEOPLE_KEY = [
+ const PEOPLE_KEY = [
   'name',
   'birth_year',
   'gender',
@@ -53,7 +53,7 @@ export const PEOPLE_KEY = [
   'eye_color',
 ];
 
-export const PLANETS_KEY = [
+ const PLANETS_KEY = [
   'name',
   'rotation_period',
   'diameter',
@@ -61,9 +61,9 @@ export const PLANETS_KEY = [
   'gravity',
 ];
 
-export const FILMS_KEY = ['title', 'director', 'producer', 'release_date'];
+ const FILMS_KEY = ['title', 'director', 'producer', 'release_date'];
 
-export const SPECIES_KEY = [
+ const SPECIES_KEY = [
   'name',
   'classification',
   'average_height',
@@ -71,7 +71,7 @@ export const SPECIES_KEY = [
   'language',
 ];
 
-export const VEHICLES_KEY = [
+ const VEHICLES_KEY = [
   'name',
   'model',
   'manufacturer',
@@ -79,7 +79,7 @@ export const VEHICLES_KEY = [
   'crew',
 ];
 
-export const STARSHIPS_KEY = [
+ const STARSHIPS_KEY = [
   'name',
   'model',
   'manufacturer',
@@ -87,7 +87,7 @@ export const STARSHIPS_KEY = [
   'passengers',
 ];
 
-export const PATHKEYS = {
+ const PATHKEYS = {
   people: 'people',
   planets: 'planets',
   films: 'films',

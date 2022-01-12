@@ -1,9 +1,23 @@
-import { getData } from './api.js';
-import { PEOPLE_LIB, PLANETS_LIB, FILMS_LIB, SPECIES_LIB, VEHICLES_LIB, STARSHIPS_LIB } from './library.js';
-import { PEOPLE_KEY,PLANETS_KEY, FILMS_KEY, SPECIES_KEY, VEHICLES_KEY, STARSHIPS_KEY } from './library.js';
-import { PATHKEYS } from './library.js';
+// import { getData } from './api.js';
+// import {
+//   PEOPLE_LIB,
+//   PLANETS_LIB,
+//   FILMS_LIB,
+//   SPECIES_LIB,
+//   VEHICLES_LIB,
+//   STARSHIPS_LIB,
+// } from './library.js';
+// import {
+//   PEOPLE_KEY,
+//   PLANETS_KEY,
+//   FILMS_KEY,
+//   SPECIES_KEY,
+//   VEHICLES_KEY,
+//   STARSHIPS_KEY,
+// } from './library.js';
+// import { PATHKEYS } from './library.js';
 
-const itemWrapper = document.querySelector('.item-wrapper');
+const cardsWrapper = document.querySelector('.cards-wrapper');
 const navigation = document.getElementById('navigation');
 const categoriesMenu = document.querySelector('.menu');
 const input = document.querySelector('.search__input');
@@ -13,11 +27,12 @@ let currentCategory = PATHKEYS.people;
 let currentPage = 1;
 let searchMode = false;
 let navArray = [];
+let currentCardNumber = undefined;
 
 function fillHtm(data) {
-  itemWrapper.textContent = '';
+  cardsWrapper.textContent = '';
   data.forEach((element, index) => {
-    itemWrapper.append(createCard(element, index + 1));
+    cardsWrapper.append(createCard(element, index + 1));
   });
 }
 
@@ -65,15 +80,13 @@ function createCard(item, index) {
   const url = item.url
     .slice(item.url.lastIndexOf('/', item.url.length - 2))
     .replace(/\//g, '');
-  card.className = 'item';
+  card.className = 'cards-wrapper__card';
   card.setAttribute('data-index', index);
   card.setAttribute('data-url', url);
   const cardContent = findKey(currentCategory).map((key, index) => {
     return index === 0
       ? `<h3>${findLib(currentCategory)[key]} : ${item[key]}</h3>`
-      : `<h4 class='more-info'>${findLib(currentCategory)[key]} : ${
-          item[key]
-        }</h4>`;
+      : `<h4>${findLib(currentCategory)[key]} : ${item[key]}</h4>`;
   });
   card.innerHTML = cardContent.join('');
   return card;
@@ -135,22 +148,32 @@ function search() {
 }
 
 function showInfo(e) {
-  const elem = e.target.closest('[data-url]');
-  if (elem) {
-    const block = elem.querySelectorAll('.more-info');
-    block.forEach((item) => item.classList.toggle('visible'));
-  } else {
-    const block = itemWrapper.querySelectorAll('.visible');
-    block.forEach((item) => item.classList.remove('visible'));
+  const elem = e.target.closest('[data-index]');
+  if (elem && !currentCardNumber) {
+    currentCardNumber = elem.getAttribute('data-index');
+    elem.classList.add('cards-wrapper__card_more-info')
+  }
+  else if(elem && elem.getAttribute('data-index') !== currentCardNumber) {
+    elem.classList.add('cards-wrapper__card_more-info');
+    cardsWrapper.querySelector(`[data-index='${currentCardNumber}']`).classList.remove('cards-wrapper__card_more-info');
+    currentCardNumber = elem.getAttribute('data-index');
+  }
+  else if (elem && elem.getAttribute('data-index') === currentCardNumber) {
+    elem.classList.toggle('cards-wrapper__card_more-info');
+  }
+  else if (cardsWrapper.querySelector('.cards-wrapper__card_more-info')) {
+    cardsWrapper.querySelector('.cards-wrapper__card_more-info').classList.remove('cards-wrapper__card_more-info')
   }
 }
 
 navigation.addEventListener('click', togglePages);
 
 categoriesMenu.addEventListener('click', (e) => {
-  categoriesMenu.querySelectorAll('.active').forEach(item => item.classList.remove('active'))
+  categoriesMenu
+    .querySelectorAll('.active')
+    .forEach((item) => item.classList.remove('active'));
   if (e.target.tagName === 'H2' || e.target.tagName === 'LI') {
-    e.target.closest('.menu__item').classList.add('active')
+    e.target.closest('.menu__item').classList.add('active');
     e.target.tagName === 'H2'
       ? (currentCategory = e.target.textContent.toLocaleLowerCase())
       : (currentCategory =
@@ -166,4 +189,4 @@ categoriesMenu.addEventListener('click', (e) => {
 
 input.addEventListener('input', search);
 
-body.addEventListener('click', showInfo);
+cardsWrapper.addEventListener('click', showInfo);
