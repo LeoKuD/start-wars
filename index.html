@@ -12,53 +12,48 @@
     <div class="contain">
       <header class="header">
         <div class="logo">
-          <a href="https://leokud.github.io/start-wars/"><div class="logo__img"></div></a>
+          <a href="https://leokud.github.io/start-wars/"
+            ><div class="logo__img"></div
+          ></a>
           <div class="logo-text">
             <h1 class="logo-text__title">Star Wars library</h1>
             <h6 class="logo-description">all about star wars</h6>
           </div>
         </div>
         <div class="search">
-          <form action="">
-            <input type="text" class="search__input" />
+          <form action="" class="my-form">
+            <input type="text" class="search__input" placeholder="Search.."/>
+            <i class="fas fa-search"></i>
           </form>
         </div>
       </header>
 
       <div class="content-wrapper">
-        <aside class="left_menu">
-          <nav class="menu">
-            <ul>
-              <li class="menu__item">
-                <h2 class="menu__text">People</h2>
-              </li>
-              <li class="menu__item">
-                <h2>Planets</h2>
-              </li>
-              <li class="menu__item">
-                <h2>Films</h2>
-              </li>
-              <li class="menu__item">
-                <h2>Species</h2>
-              </li>
-              <li class="menu__item">
-                <h2>Vehicles</h2>
-              </li>
-              <li class="menu__item">
-                <h2>Starships</h2>
-              </li>
+        <aside>
+          <nav class="left-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+            <ul class="left-menu__wrapper">
             </ul>
           </nav>
-          <nav class="nav-buttom">
-            <ul id="navigation"></ul>
+          <nav class="pagination-nav">
+            <ul id="pagination"></ul>
           </nav>
         </aside>
-        <main class="cards-wrapper"></main>
+        <main class="cards-wrapper">
+        </main>
       </div>
+      <img src="./img/loader.gif" alt="loader" class="loader">
     </div>
 
     <script src="./js/api.js"></script>
     <script src="./js/library.js"></script>
     <script src="./js/index.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b605d0c877.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

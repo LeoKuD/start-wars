@@ -1,4 +1,4 @@
- const PEOPLE_LIB = {
+const PEOPLE = {
   name: 'Name',
   birth_year: 'Birth year',
   gender: 'Gender',
@@ -6,7 +6,7 @@
   eye_color: 'Eye color',
 };
 
- const PLANETS_LIB = {
+const PLANETS = {
   name: 'Name',
   rotation_period: 'Rotation period',
   diameter: 'Diameter',
@@ -14,14 +14,14 @@
   gravity: 'Gravity',
 };
 
- const FILMS_LIB = {
+const FILMS = {
   title: 'Title',
   director: 'Director',
   producer: 'Producer',
   release_date: 'Release date',
 };
 
- const SPECIES_LIB = {
+const SPECIES = {
   name: 'Name',
   classification: 'Classification',
   average_height: 'Average height',
@@ -29,7 +29,7 @@
   language: 'Language',
 };
 
- const VEHICLES_LIB = {
+const VEHICLES = {
   name: 'Name',
   model: 'Model',
   manufacturer: 'Manufacturer',
@@ -37,7 +37,7 @@
   crew: 'Crew',
 };
 
- const STARSHIPS_LIB = {
+const STARSHIPS = {
   name: 'Name',
   model: 'Model',
   manufacturer: 'Manufacturer',
@@ -45,49 +45,7 @@
   passengers: 'Passengers',
 };
 
- const PEOPLE_KEY = [
-  'name',
-  'birth_year',
-  'gender',
-  'height',
-  'eye_color',
-];
-
- const PLANETS_KEY = [
-  'name',
-  'rotation_period',
-  'diameter',
-  'climate',
-  'gravity',
-];
-
- const FILMS_KEY = ['title', 'director', 'producer', 'release_date'];
-
- const SPECIES_KEY = [
-  'name',
-  'classification',
-  'average_height',
-  'skin_colors',
-  'language',
-];
-
- const VEHICLES_KEY = [
-  'name',
-  'model',
-  'manufacturer',
-  'cost_in_credits',
-  'crew',
-];
-
- const STARSHIPS_KEY = [
-  'name',
-  'model',
-  'manufacturer',
-  'cost_in_credits',
-  'passengers',
-];
-
- const PATHKEYS = {
+const CATEGORIESKEYS = {
   people: 'people',
   planets: 'planets',
   films: 'films',
