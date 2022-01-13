@@ -53,3 +53,26 @@ const CATEGORIESKEYS = {
   vehicles: 'vehicles',
   starships: 'starships',
 };
+
+const MENUSTYLING = {
+  leftMenuItemActive: 'left-menu__item_active',
+  leftMenuItem: 'left-menu__item',
+  leftMenuText:'left-menu__text',
+}
+
+const STYLINGPAGINATION = {
+  paginationItem: '.pagination__item',
+  paginationItemActive: 'pagination__item_active',
+}
+
+const ATTRIBUTESNAMES = {
+  dataIndex: 'data-index',
+  dataIndexasAtr: '[data-index]',
+  itemUrl: 'item-url',
+  dataCategory: 'data-category'
+}
+
+const CARDSTYLING = {
+  card: 'card',
+  cardShowInfo: 'card_show-info',
+}

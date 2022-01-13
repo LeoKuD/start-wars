@@ -1,22 +1,3 @@
-// import { getData } from './api.js';
-// import {
-//   PEOPLE,
-//   PLANETS,
-//   FILMS,
-//   SPECIES,
-//   VEHICLES,
-//   STARSHIPS,
-// } from './library.js';
-// import {
-//   PEOPLE_KEY,
-//   PLANETS_KEY,
-//   FILMS_KEY,
-//   SPECIES_KEY,
-//   VEHICLES_KEY,
-//   STARSHIPS_KEY,
-// } from './library.js';
-// import { CATEGORIESKEYS } from './library.js';
-
 const cardsWrapper = document.querySelector('.cards-wrapper');
 const pagination = document.getElementById('pagination');
 const categoriesMenu = document.querySelector('.left-menu__wrapper');
@@ -39,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }</h2></li>`
   );
   categoriesMenu.innerHTML = content.join('');
-  categoriesMenu.firstElementChild.classList.add('left-menu__item_active');
+  categoriesMenu.firstElementChild.classList.add(
+    MENUSTYLING.leftMenuItemActive
+  );
   getData(currentCategory, (data) => {
     fillHtm(data.results);
     createrPagination(data);
@@ -57,34 +40,14 @@ function fillHtm(data) {
   }
 }
 
-function findKey(category) {
-  switch (category) {
-    case CATEGORIESKEYS.people:
-      return PEOPLE;
-    case CATEGORIESKEYS.planets:
-      return PLANETS;
-    case CATEGORIESKEYS.films:
-      return FILMS;
-    case CATEGORIESKEYS.species:
-      return SPECIES;
-    case CATEGORIESKEYS.vehicles:
-      return VEHICLES;
-    case CATEGORIESKEYS.starships:
-      return STARSHIPS;
-
-    default:
-      break;
-  }
-}
-
 function createCard(item, index) {
   const card = document.createElement('div');
-  card.className = 'card';
+  card.className = CARDSTYLING.card;
   const itemUrl = item.url
     .slice(item.url.lastIndexOf('/', item.url.length - 2))
     .replace(/\//g, '');
-  card.setAttribute('data-index', index);
-  card.setAttribute('item-url', itemUrl);
+  card.setAttribute(ATTRIBUTESNAMES.dataIndex, index);
+  card.setAttribute(ATTRIBUTESNAMES.itemUrl, itemUrl);
   const cardContent = Object.keys(findKey(currentCategory)).map(
     (key, index) => {
       return index === 0
@@ -125,12 +88,14 @@ function createrPagination(data) {
 }
 
 function togglePages(e) {
-  if (e.target.hasAttribute('data-index')) {
+  if (e.target.hasAttribute(ATTRIBUTESNAMES.dataIndex)) {
     currentCardNumber = undefined;
-    let items = document.querySelectorAll('.pagination__item');
-    items.forEach((elem) => elem.classList.remove('pagination__item_active'));
-    e.target.classList.add('pagination__item_active');
-    const page = e.target.getAttribute('data-index');
+    let items = document.querySelectorAll(STYLINGPAGINATION.paginationItem);
+    items.forEach((elem) =>
+      elem.classList.remove(STYLINGPAGINATION.paginationItemActive)
+    );
+    e.target.classList.add(STYLINGPAGINATION.paginationItemActive);
+    const page = e.target.getAttribute(ATTRIBUTESNAMES.dataIndex);
     currentPage = parseInt(page);
     getData(
       currentCategory +
@@ -164,22 +129,28 @@ function search(e) {
 }
 
 function showInfo(e) {
-  const elem = e.target.closest('[data-index]');
+  const elem = e.target.closest(ATTRIBUTESNAMES.dataIndexasAtr);
   if (elem && !currentCardNumber) {
-    currentCardNumber = elem.getAttribute('data-index');
-    elem.classList.add('card_show-info');
-  } else if (elem && elem.getAttribute('data-index') !== currentCardNumber) {
-    elem.classList.add('card_show-info');
+    currentCardNumber = elem.getAttribute(ATTRIBUTESNAMES.dataIndex);
+    elem.classList.add(CARDSTYLING.cardShowInfo);
+  } else if (
+    elem &&
+    elem.getAttribute(ATTRIBUTESNAMES.dataIndex) !== currentCardNumber
+  ) {
+    elem.classList.add(CARDSTYLING.cardShowInfo);
     cardsWrapper
       .querySelector(`[data-index='${currentCardNumber}']`)
-      .classList.remove('card_show-info');
-    currentCardNumber = elem.getAttribute('data-index');
-  } else if (elem && elem.getAttribute('data-index') === currentCardNumber) {
-    elem.classList.toggle('card_show-info');
+      .classList.remove(CARDSTYLING.cardShowInfo);
+    currentCardNumber = elem.getAttribute(ATTRIBUTESNAMES.dataIndex);
+  } else if (
+    elem &&
+    elem.getAttribute(ATTRIBUTESNAMES.dataIndex) === currentCardNumber
+  ) {
+    elem.classList.toggle(CARDSTYLING.cardShowInfo);
   } else if (cardsWrapper.querySelector('.card_show-info')) {
     cardsWrapper
       .querySelector('.card_show-info')
-      .classList.remove('card_show-info');
+      .classList.remove(CARDSTYLING.cardShowInfo);
   }
 }
 
@@ -188,21 +159,21 @@ pagination.addEventListener('click', togglePages);
 categoriesMenu.addEventListener('click', (e) => {
   console.log(e.target.className);
   if (
-    e.target.className === 'left-menu__item' ||
-    e.target.className === 'left-menu__text'
+    e.target.className === MENUSTYLING.leftMenuItem ||
+    e.target.className === MENUSTYLING.leftMenuText
   ) {
+    currentPage = 1;
+    input.value = '';
     categoriesMenu
       .querySelectorAll('.left-menu__item_active')
-      .forEach((item) => item.classList.remove('left-menu__item_active'));
+      .forEach((item) => item.classList.remove(MENUSTYLING.leftMenuItemActive));
     const currentElemets = e.target.closest('[data-category]');
 
-    currentElemets.classList.add('left-menu__item_active');
-    currentCategory = currentElemets.getAttribute('data-category');
+    currentElemets.classList.add(MENUSTYLING.leftMenuItemActive);
+    currentCategory = currentElemets.getAttribute(ATTRIBUTESNAMES.dataCategory);
     getData(currentCategory, (data) => {
       fillHtm(data.results);
       createrPagination(data);
-      currentPage = 1;
-      input.value = '';
     });
   }
 });
