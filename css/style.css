@@ -141,11 +141,18 @@ h6 {
   cursor: pointer;
 }
 .card p {
-  display: none;
+  transition: 0.5s;
+  height: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .card_show-info p {
-  display: block;
+  opacity: 1;
+  height: auto;
+  padding: 10px 0;
+  visibility: visible;
 }
 .card_show-info .card__drop-down {
   transform: rotate(270deg);

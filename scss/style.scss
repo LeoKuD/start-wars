@@ -142,12 +142,19 @@ h6 {
   min-height: 80px;
   cursor: pointer;
   p {
-    display: none;
+    transition: $trasition;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 .card_show-info {
   p {
-    display: block;
+    opacity: 1;
+    height: auto;
+    padding: 10px 0;
+    visibility: visible;
   }
   .card__drop-down {
     transform: rotate(270deg);
