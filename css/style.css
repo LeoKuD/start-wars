@@ -147,8 +147,7 @@ h6 {
 .card_show-info p {
   display: block;
 }
-
-.card__drop-down {
+.card_show-info .card__drop-down {
   transform: rotate(270deg);
 }
 

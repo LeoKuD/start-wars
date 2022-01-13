@@ -149,10 +149,11 @@ h6 {
   p {
     display: block;
   }
+  .card__drop-down {
+    transform: rotate(270deg);
+  }
 }
-.card__drop-down {
-  transform: rotate(270deg);
-}
+
 .card__title {
   display: flex;
 }
