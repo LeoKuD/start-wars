@@ -64,6 +64,9 @@ const STYLINGPAGINATION = {
   paginationItem: '.pagination__item',
   paginationItemActive: 'pagination__item_active',
 }
+const STYLINGLOADER = {
+  loaderVisible: 'loader_visible',
+}
 
 const ATTRIBUTESNAMES = {
   dataIndex: 'data-index',
