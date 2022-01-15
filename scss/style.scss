@@ -34,7 +34,7 @@ h2 {
 }
 h3 {
   margin: 0;
-  padding: 10px 5px 10px 5px;
+  padding: 0.6rem 0.3rem 0.6rem 0.3rem;
 }
 
 h6 {
@@ -49,7 +49,7 @@ h6 {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 0;
+  padding: 1.6rem 0;
   .logo {
     display: flex;
   }
@@ -61,7 +61,7 @@ h6 {
     border-radius: 50%;
   }
   .logo-text {
-    padding-left: 16px;
+    padding-left: 1rem;
   }
   form {
     display: flex;
@@ -87,10 +87,10 @@ h6 {
 }
 
 .contain {
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
   height: 100vh;
-  padding: 0 50px;
+  padding: 0 3rem;
 }
 
 .loader {
@@ -104,7 +104,8 @@ h6 {
 }
 
 .content-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 14.4rem 1fr;
 }
 .left-menu {
   background-color: $bg-color-tertiary;
@@ -115,46 +116,53 @@ h6 {
   background-color: $bg-color-primary;
   margin: 1rem 0;
   border-radius: 0.5rem;
-  padding: 0 1rem;
+  padding: 0 0.2rem;
   text-align: center;
   cursor: pointer;
 }
 
 .left-menu__item_active {
-  border: 2px solid #072227;
-  box-shadow: 5px 5px 15px 5px rgba(7, 34, 39, 0.5);
+  border: 1px solid #072227;
+  box-shadow: 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
   background-color: $bg-color-secondary;
 }
 
 .cards-wrapper {
-  display: flex;
-  align-items: flex-start;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: minmax(50%, 1fr) minmax(50%, 1fr);
   gap: 1rem;
-  justify-content: space-around;
-  padding-left: 1rem;
+  justify-content: center;
+  margin: 0 1rem;
+  align-self: flex-start;
 }
+
 .card {
-  flex: 0 1 300px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4.7rem auto auto auto auto;
   background-color: $bg-color-secondary;
   border-radius: 0.5rem;
   text-align: center;
-  min-height: 80px;
   cursor: pointer;
   p {
-    transition: $trasition;
     height: 0;
     margin: 0;
     opacity: 0;
     visibility: hidden;
   }
+  align-self: baseline;
 }
 .card_show-info {
   p {
+    transition: 0.1s;
     opacity: 1;
     height: auto;
-    padding: 10px 0;
+    padding: 0.5rem 1rem;
     visibility: visible;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .card__drop-down {
     transform: rotate(270deg);
@@ -163,12 +171,15 @@ h6 {
 
 .card__title {
   display: flex;
+  border-bottom: 1px solid $bg-color-primary;
+
 }
 .card__title-text {
   flex-grow: 1;
 }
+
 .card__drop-down {
-  box-shadow: 0px 0px 5px 4px rgb(7 34 39 / 50%);
+  box-shadow: 0px 0px 0.3rem 4px rgb(7 34 39 / 50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,7 +190,8 @@ h6 {
   transform: rotate(90deg);
   margin-right: 1rem;
   transition: $trasition;
-  margin-top: 10px;
+  margin-top: 0.6rem;
+  align-self: flex-start;
   &:hover {
     background-color: transparent;
     &::before {
@@ -193,33 +205,35 @@ h6 {
     height: 0;
     border-style: solid;
     border-color: transparent;
-    border-width: 5px 10px;
-    margin-left: 10px;
+    border-width: 0.3rem 0.6rem;
+    margin-left: 0.6rem;
     border-left-color: $bg-color-primary;
   }
 }
 
-.pagination-nav {
+.pagination {
   margin-top: 1rem;
-  ul {
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    background-color: $bg-color-tertiary;
-    padding: 0.5rem;
-    li {
-      margin: 0 0.25rem;
-      background-color: $bg-color-primary;
-      padding: 0.15rem;
-      border-radius: 0.25rem;
-      cursor: pointer;
-    }
-  }
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  background-color: $bg-color-tertiary;
+  padding: 0.5rem;
+}
+.pagination__item {
+  margin: 0 0.25rem;
+  background-color: $bg-color-primary;
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.pagination_hide {
+  display: none;
 }
 
 .pagination__item_active {
   border: 2px solid #072227;
-  box-shadow: 5px 5px 15px 5px rgba(7, 34, 39, 0.5);
+  box-shadow: 0.3rem 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
 }
 
 .left-menu__item:hover {
@@ -230,12 +244,13 @@ h6 {
   display: none;
 }
 
-@media (max-width: 62em) {
-  .card {
-    flex-basis: 250px;
-  }
-}
 @media (max-width: 45em) {
+  .cards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  aside {
+    order: 2;
+  }
   #menu__toggle {
     display: block;
     opacity: 0;
@@ -261,11 +276,11 @@ h6 {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 30px;
-    left: 23px;
+    top: 1.9rem;
+    left: 1.4rem;
 
     width: 45px;
-    height: 26px;
+    height: 1.6rem;
 
     cursor: pointer;
     z-index: 1;
@@ -290,7 +305,7 @@ h6 {
   }
   .menu__btn > span::after {
     content: '';
-    top: 10px;
+    top: 0.6rem;
   }
 
   .left-menu__wrapper {
@@ -300,11 +315,10 @@ h6 {
     top: 0;
     left: -100%;
 
-    width: 200px;
     height: 100%;
 
     margin: 0;
-    padding: 80px 0;
+    padding: 5rem 0;
 
     list-style: none;
 
@@ -319,7 +333,6 @@ h6 {
   }
 
   .header {
-    margin: 0 2rem;
     flex-direction: column;
   }
 
@@ -328,25 +341,27 @@ h6 {
   }
 
   .content-wrapper {
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
   }
 
   .left-menu {
     position: fixed;
-    top: 26px;
-    left: 20px;
-    width: 26px;
-    height: 26px;
+    top: 1.6rem;
+    left: 1.3rem;
+    width: 1.6rem;
+    height: 1.6rem;
     background-color: $bg-color-primary;
+    min-width: auto;
   }
   .left-menu__item {
     display: block;
-    padding: 12px 24px;
+    padding: 0.8rem 1.5rem;
 
     color: #333;
 
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 600;
 
     text-decoration: none;
@@ -354,17 +369,20 @@ h6 {
     transition-duration: 0.25s;
   }
 
-  .card {
-    flex-basis: 200px;
-  }
-
-  .pagination-nav ul li {
+  .pagination__item {
     padding: 0.2rem 0.5rem;
   }
 }
 
 @media (max-width: 36em) {
-  .card {
-    flex-basis: 300px;
+  .cards-wrapper {
+    grid-template-columns: 1fr;
   }
+  .menu__btn {
+    top: 0.3rem;
+    left: 0.3rem;
+}
+.pagination__item{
+  padding: 0.2rem 0.1rem;
+}
 }

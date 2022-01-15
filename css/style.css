@@ -28,7 +28,7 @@ h2 {
 
 h3 {
   margin: 0;
-  padding: 10px 5px 10px 5px;
+  padding: 0.6rem 0.3rem 0.6rem 0.3rem;
 }
 
 h6 {
@@ -43,7 +43,7 @@ h6 {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 0;
+  padding: 1.6rem 0;
 }
 .header .logo {
   display: flex;
@@ -56,7 +56,7 @@ h6 {
   border-radius: 50%;
 }
 .header .logo-text {
-  padding-left: 16px;
+  padding-left: 1rem;
 }
 .header form {
   display: flex;
@@ -81,10 +81,10 @@ h6 {
 }
 
 .contain {
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
   height: 100vh;
-  padding: 0 50px;
+  padding: 0 3rem;
 }
 
 .loader {
@@ -99,7 +99,8 @@ h6 {
 }
 
 .content-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 14.4rem 1fr;
 }
 
 .left-menu {
@@ -112,36 +113,37 @@ h6 {
   background-color: #f8ede3;
   margin: 1rem 0;
   border-radius: 0.5rem;
-  padding: 0 1rem;
+  padding: 0 0.2rem;
   text-align: center;
   cursor: pointer;
 }
 
 .left-menu__item_active {
-  border: 2px solid #072227;
-  box-shadow: 5px 5px 15px 5px rgba(7, 34, 39, 0.5);
+  border: 1px solid #072227;
+  box-shadow: 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
   background-color: #bdd2b6;
 }
 
 .cards-wrapper {
-  display: flex;
-  align-items: flex-start;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: minmax(50%, 1fr) minmax(50%, 1fr);
   gap: 1rem;
-  justify-content: space-around;
-  padding-left: 1rem;
+  justify-content: center;
+  margin: 0 1rem;
+  align-self: flex-start;
 }
 
 .card {
-  flex: 0 1 300px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4.7rem auto auto auto auto;
   background-color: #bdd2b6;
   border-radius: 0.5rem;
   text-align: center;
-  min-height: 80px;
   cursor: pointer;
+  align-self: baseline;
 }
 .card p {
-  transition: 0.5s;
   height: 0;
   margin: 0;
   opacity: 0;
@@ -149,10 +151,15 @@ h6 {
 }
 
 .card_show-info p {
+  transition: 0.1s;
   opacity: 1;
   height: auto;
-  padding: 10px 0;
+  padding: 0.5rem 1rem;
   visibility: visible;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .card_show-info .card__drop-down {
   transform: rotate(270deg);
@@ -160,6 +167,7 @@ h6 {
 
 .card__title {
   display: flex;
+  border-bottom: 1px solid #f8ede3;
 }
 
 .card__title-text {
@@ -167,7 +175,7 @@ h6 {
 }
 
 .card__drop-down {
-  box-shadow: 0px 0px 5px 4px rgba(7, 34, 39, 0.5);
+  box-shadow: 0px 0px 0.3rem 4px rgba(7, 34, 39, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +186,8 @@ h6 {
   transform: rotate(90deg);
   margin-right: 1rem;
   transition: 0.5s;
-  margin-top: 10px;
+  margin-top: 0.6rem;
+  align-self: flex-start;
 }
 .card__drop-down:hover {
   background-color: transparent;
@@ -193,22 +202,21 @@ h6 {
   height: 0;
   border-style: solid;
   border-color: transparent;
-  border-width: 5px 10px;
-  margin-left: 10px;
+  border-width: 0.3rem 0.6rem;
+  margin-left: 0.6rem;
   border-left-color: #f8ede3;
 }
 
-.pagination-nav {
+.pagination {
   margin-top: 1rem;
-}
-.pagination-nav ul {
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;
   background-color: #a2b29f;
   padding: 0.5rem;
 }
-.pagination-nav ul li {
+
+.pagination__item {
   margin: 0 0.25rem;
   background-color: #f8ede3;
   padding: 0.15rem;
@@ -216,9 +224,13 @@ h6 {
   cursor: pointer;
 }
 
+.pagination_hide {
+  display: none;
+}
+
 .pagination__item_active {
   border: 2px solid #072227;
-  box-shadow: 5px 5px 15px 5px rgba(7, 34, 39, 0.5);
+  box-shadow: 0.3rem 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
 }
 
 .left-menu__item:hover {
@@ -229,12 +241,15 @@ h6 {
   display: none;
 }
 
-@media (max-width: 62em) {
-  .card {
-    flex-basis: 250px;
-  }
-}
 @media (max-width: 45em) {
+  .cards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  aside {
+    order: 2;
+  }
+
   #menu__toggle {
     display: block;
     opacity: 0;
@@ -263,10 +278,10 @@ h6 {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 30px;
-    left: 23px;
+    top: 1.9rem;
+    left: 1.4rem;
     width: 45px;
-    height: 26px;
+    height: 1.6rem;
     cursor: pointer;
     z-index: 1;
   }
@@ -289,7 +304,7 @@ h6 {
 
   .menu__btn > span::after {
     content: "";
-    top: 10px;
+    top: 0.6rem;
   }
 
   .left-menu__wrapper {
@@ -298,10 +313,9 @@ h6 {
     visibility: hidden;
     top: 0;
     left: -100%;
-    width: 200px;
     height: 100%;
     margin: 0;
-    padding: 80px 0;
+    padding: 5rem 0;
     list-style: none;
     background-color: #f8ede3;
     box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
@@ -313,7 +327,6 @@ h6 {
   }
 
   .header {
-    margin: 0 2rem;
     flex-direction: column;
   }
 
@@ -322,39 +335,46 @@ h6 {
   }
 
   .content-wrapper {
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
   }
 
   .left-menu {
     position: fixed;
-    top: 26px;
-    left: 20px;
-    width: 26px;
-    height: 26px;
+    top: 1.6rem;
+    left: 1.3rem;
+    width: 1.6rem;
+    height: 1.6rem;
     background-color: #f8ede3;
+    min-width: auto;
   }
 
   .left-menu__item {
     display: block;
-    padding: 12px 24px;
+    padding: 0.8rem 1.5rem;
     color: #333;
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 600;
     text-decoration: none;
     transition-duration: 0.25s;
   }
 
-  .card {
-    flex-basis: 200px;
-  }
-
-  .pagination-nav ul li {
+  .pagination__item {
     padding: 0.2rem 0.5rem;
   }
 }
 @media (max-width: 36em) {
-  .card {
-    flex-basis: 300px;
+  .cards-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .menu__btn {
+    top: 0.3rem;
+    left: 0.3rem;
+  }
+
+  .pagination__item {
+    padding: 0.2rem 0.1rem;
   }
 }

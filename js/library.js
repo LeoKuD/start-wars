@@ -16,6 +16,7 @@ const PLANETS = {
 
 const FILMS = {
   title: 'Title',
+  episode_id: 'Episode',
   director: 'Director',
   producer: 'Producer',
   release_date: 'Release date',
@@ -63,6 +64,7 @@ const MENUSTYLING = {
 const STYLINGPAGINATION = {
   paginationItem: '.pagination__item',
   paginationItemActive: 'pagination__item_active',
+  paginationHide: 'pagination_hide',
 }
 const STYLINGLOADER = {
   loaderVisible: 'loader_visible',

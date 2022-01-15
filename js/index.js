@@ -1,5 +1,5 @@
 const cardsWrapper = document.querySelector('.cards-wrapper');
-const pagination = document.getElementById('pagination');
+const pagination = document.querySelector('.pagination');
 const categoriesMenu = document.querySelector('.left-menu__wrapper');
 const input = document.querySelector('.search__input');
 const searchBtn = document.querySelector('.fa-search');
@@ -10,7 +10,6 @@ const body = document.body;
 let currentCategory = CATEGORIESKEYS.people;
 let currentPage = 1;
 let searchMode = false;
-let currentCardNumber = undefined;
 
 document.addEventListener('DOMContentLoaded', () => {
   const content = Object.values(CATEGORIESKEYS).map(
@@ -62,7 +61,9 @@ function createCard(item, index) {
 }
 
 function createrPagination(data) {
-  pagination.textContent = '';
+  if (data.count) {
+    pagination.classList.remove(STYLINGPAGINATION.paginationHide);
+    pagination.textContent = '';
   const paginationArray = [];
   const countPages = Math.ceil(data.count / 10);
   for (let i = 1; i <= countPages; i++) {
@@ -85,11 +86,13 @@ function createrPagination(data) {
         );
     pagination.innerHTML = navContent.join('');
   }
+  } else {
+    pagination.classList.add(STYLINGPAGINATION.paginationHide);
+  }
 }
 
 function togglePages(e) {
   if (e.target.hasAttribute(ATTRIBUTESNAMES.dataIndex)) {
-    currentCardNumber = undefined;
     let items = document.querySelectorAll(STYLINGPAGINATION.paginationItem);
     items.forEach((elem) =>
       elem.classList.remove(STYLINGPAGINATION.paginationItemActive)
@@ -130,28 +133,7 @@ function search(e) {
 
 function showInfo(e) {
   const elem = e.target.closest(ATTRIBUTESNAMES.dataIndexasAtr);
-  if (elem && !currentCardNumber) {
-    currentCardNumber = elem.getAttribute(ATTRIBUTESNAMES.dataIndex);
-    elem.classList.add(CARDSTYLING.cardShowInfo);
-  } else if (
-    elem &&
-    elem.getAttribute(ATTRIBUTESNAMES.dataIndex) !== currentCardNumber
-  ) {
-    elem.classList.add(CARDSTYLING.cardShowInfo);
-    cardsWrapper
-      .querySelector(`[data-index='${currentCardNumber}']`)
-      .classList.remove(CARDSTYLING.cardShowInfo);
-    currentCardNumber = elem.getAttribute(ATTRIBUTESNAMES.dataIndex);
-  } else if (
-    elem &&
-    elem.getAttribute(ATTRIBUTESNAMES.dataIndex) === currentCardNumber
-  ) {
-    elem.classList.toggle(CARDSTYLING.cardShowInfo);
-  } else if (cardsWrapper.querySelector('.card_show-info')) {
-    cardsWrapper
-      .querySelector('.card_show-info')
-      .classList.remove(CARDSTYLING.cardShowInfo);
-  }
+  elem && elem.classList.toggle(CARDSTYLING.cardShowInfo)
 }
 
 pagination.addEventListener('click', togglePages);
