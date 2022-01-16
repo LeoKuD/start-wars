@@ -25,6 +25,6 @@ function createMenuCategory(item) {
 }
 
 function setUrl(category, search='', page='') {
-  console.log(`${category}${search && `/?search=${search}`}${page && `&page=${page}`}`);
+  console.log(`${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`);
   return `${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`
 }
