@@ -8,6 +8,11 @@
   list-style-type: none;
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #f8ede3;
   color: #072227;
@@ -140,23 +145,25 @@ h6 {
   background-color: #bdd2b6;
   border-radius: 0.5rem;
   text-align: center;
-  cursor: pointer;
   align-self: baseline;
+  cursor: pointer;
 }
 .card p {
+  transition: 0.8s;
   height: 0;
   margin: 0;
-  display: none;
-}
-
-.card_show-info p {
-  height: auto;
-  display: block;
-  padding: 0.5rem 1rem;
+  visibility: hidden;
+  transition: 0.8s;
+  visibility: visible;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card_show-info p {
+  height: auto;
+  padding: 0.5rem 1rem;
 }
 .card_show-info .card__drop-down {
   transform: rotate(270deg);
@@ -182,7 +189,7 @@ h6 {
   border-radius: 100%;
   transform: rotate(90deg);
   margin-right: 1rem;
-  transition: 0.5s;
+  transition: 0.8s;
   margin-top: 0.6rem;
   align-self: flex-start;
 }

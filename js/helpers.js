@@ -23,3 +23,8 @@ function createMenuCategory(item) {
     item.charAt(0).toUpperCase() + item.slice(1)
   }</h2></li>`;
 }
+
+function setUrl(category, search='', page='') {
+  console.log(`${category}${search && `/?search=${search}`}${page && `&page=${page}`}`);
+  return `${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`
+}

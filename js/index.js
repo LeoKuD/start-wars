@@ -48,7 +48,7 @@ function createCard(item, index) {
       ? `<div class='card__title'><h3 class='card__title-text'>${name} : ${item[key]}</h3><div class='card__drop-down'></div></div>`
       : `<p>${name} : ${item[key]}</p>`;
   });
-  cardContent.push(`<p> <a href='${item.url}'>more info...</> </p>`);
+  cardContent.push(`<p> <a target='_blank' href='${item.url}'>more info...</> </p>`);
   card.innerHTML = cardContent.join('');
   return card;
 }
@@ -91,9 +91,7 @@ function togglePages(e) {
     const page = e.target.getAttribute(ATTRIBUTES_NAME.dataIndex);
     !searchMode && (currentPage = parseInt(page));
     getData(
-      currentCategory +
-        (searchMode ? `/?search=${input.value}&page=` : '/?page=') +
-        page,
+      setUrl(currentCategory, input.value, page),
       (data) => {
         fillCards(data.results);
       }
@@ -105,14 +103,14 @@ function search(e) {
   e.preventDefault();
   if (input.value) {
     searchMode = true;
-    getData(currentCategory + '/' + `?search=${input.value}`, (data) => {
+    getData(setUrl(currentCategory, input.value), (data) => {
       fillCards(data.results);
       createrPagination(data);
     });
   } else {
     searchMode = false;
     getData(
-      currentCategory + `/?search=${input.value}&page=${currentPage}`,
+      setUrl(currentCategory, input.value, currentPage),
       (data) => {
         fillCards(data.results);
         createrPagination(data);

@@ -6,7 +6,7 @@ $fs-h1: 28px;
 $fs-h2: 36px;
 $fs-h4: 16px;
 $fs-h6: 18px;
-$trasition: 0.5s;
+$trasition: 0.8s;
 
 * {
   box-sizing: border-box;
@@ -17,7 +17,10 @@ $trasition: 0.5s;
     list-style-type: none;
   }
 }
-
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
 body {
   background-color: $bg-color-primary;
   color: $font-color-primary;
@@ -144,23 +147,26 @@ h6 {
   background-color: $bg-color-secondary;
   border-radius: 0.5rem;
   text-align: center;
+  align-self: baseline;
   cursor: pointer;
   p {
+    transition: 0.8s;
     height: 0;
     margin: 0;
-    display: none;
-  }
-  align-self: baseline;
-}
-.card_show-info {
-  p {
-    height: auto;
-    display: block;
-    padding: 0.5rem 1rem;
+    visibility: hidden;
+
+    transition: 0.8s;
+    visibility: visible;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+.card_show-info {
+  p {
+    height: auto;
+    padding: 0.5rem 1rem;
   }
   .card__drop-down {
     transform: rotate(270deg);
@@ -170,7 +176,6 @@ h6 {
 .card__title {
   display: flex;
   border-bottom: 1px solid $bg-color-primary;
-
 }
 .card__title-text {
   flex-grow: 1;
@@ -379,8 +384,8 @@ h6 {
   .menu__btn {
     top: 0.3rem;
     left: 0.3rem;
-}
-.pagination__item{
-  padding: 0.2rem 0.1rem;
-}
+  }
+  .pagination__item {
+    padding: 0.2rem 0.1rem;
+  }
 }
