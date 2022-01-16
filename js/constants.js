@@ -55,29 +55,28 @@ const CATEGORIESKEYS = {
   starships: 'starships',
 };
 
-const MENUSTYLING = {
+const LEFT_MENU_CLASS_NAME = {
   leftMenuItemActive: 'left-menu__item_active',
   leftMenuItem: 'left-menu__item',
   leftMenuText:'left-menu__text',
 }
 
-const STYLINGPAGINATION = {
-  paginationItem: '.pagination__item',
+const PAGINATION_CLASS_NAME = {
+  paginationItem: 'pagination__item',
   paginationItemActive: 'pagination__item_active',
   paginationHide: 'pagination_hide',
 }
-const STYLINGLOADER = {
+const LOADER_CLASS_NAME = {
   loaderVisible: 'loader_visible',
 }
 
-const ATTRIBUTESNAMES = {
+const ATTRIBUTES_NAME = {
   dataIndex: 'data-index',
   dataIndexasAtr: '[data-index]',
-  itemUrl: 'item-url',
   dataCategory: 'data-category'
 }
 
-const CARDSTYLING = {
+const CARD_CLASS_NAME = {
   card: 'card',
   cardShowInfo: 'card_show-info',
 }

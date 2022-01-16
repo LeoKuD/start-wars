@@ -1,14 +1,17 @@
-const baseURL = 'https://swapi.dev/api/';
+const baseURL = 'https://swapi.dev/api';
 
 function getData(path, cb) {
-  loader.classList.add(STYLINGLOADER.loaderVisible);
-  fetch(baseURL + path)
+  loader.classList.add(LOADER_CLASS_NAME.loaderVisible);
+  fetch(`${baseURL}/${path}`)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-    loader.classList.remove(STYLINGLOADER.loaderVisible);
+      loader.classList.remove(LOADER_CLASS_NAME.loaderVisible);
       cb(data);
     })
-    .catch((e) => alert('SERVER NOT FOUND'));
+    .catch((e) => {
+      alert('SERVER NOT FOUND');
+      loader.classList.remove(LOADER_CLASS_NAME.loaderVisible);
+    });
 }

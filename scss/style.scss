@@ -1,6 +1,7 @@
 $bg-color-primary: #f8ede3;
 $bg-color-secondary: #bdd2b6;
 $bg-color-tertiary: #a2b29f;
+$font-color-primary: #072227;
 $fs-h1: 28px;
 $fs-h2: 36px;
 $fs-h4: 16px;
@@ -19,7 +20,7 @@ $trasition: 0.5s;
 
 body {
   background-color: $bg-color-primary;
-  color: #072227;
+  color: $font-color-primary;
 }
 h1 {
   font-size: $fs-h1;
@@ -122,7 +123,7 @@ h6 {
 }
 
 .left-menu__item_active {
-  border: 1px solid #072227;
+  border: 1px solid $font-color-primary;
   box-shadow: 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
   background-color: $bg-color-secondary;
 }
@@ -147,18 +148,15 @@ h6 {
   p {
     height: 0;
     margin: 0;
-    opacity: 0;
-    visibility: hidden;
+    display: none;
   }
   align-self: baseline;
 }
 .card_show-info {
   p {
-    transition: 0.1s;
-    opacity: 1;
     height: auto;
+    display: block;
     padding: 0.5rem 1rem;
-    visibility: visible;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
@@ -232,7 +230,7 @@ h6 {
 }
 
 .pagination__item_active {
-  border: 2px solid #072227;
+  border: 2px solid $font-color-primary;
   box-shadow: 0.3rem 0.3rem 1rem 0.3rem rgba(7, 34, 39, 0.5);
 }
 
@@ -240,7 +238,7 @@ h6 {
   background-color: $bg-color-secondary;
 }
 
-#menu__toggle {
+#menu-toggle {
   display: none;
 }
 
@@ -251,23 +249,23 @@ h6 {
   aside {
     order: 2;
   }
-  #menu__toggle {
+  #menu-toggle {
     display: block;
     opacity: 0;
   }
 
-  #menu__toggle:checked ~ .menu__btn > span {
+  #menu-toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
   }
-  #menu__toggle:checked ~ .menu__btn > span::before {
+  #menu-toggle:checked ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
   }
-  #menu__toggle:checked ~ .menu__btn > span::after {
+  #menu-toggle:checked ~ .menu__btn > span::after {
     top: 0;
     transform: rotate(90deg);
   }
-  #menu__toggle:checked ~ .left-menu__wrapper {
+  #menu-toggle:checked ~ .left-menu__wrapper {
     visibility: visible;
     left: 0;
   }
@@ -283,7 +281,7 @@ h6 {
     height: 1.6rem;
 
     cursor: pointer;
-    z-index: 1;
+    z-index: 100;
   }
 
   .menu__btn > span,
@@ -295,7 +293,7 @@ h6 {
     width: 100%;
     height: 4px;
 
-    background-color: #072227;
+    background-color: $font-color-primary;
 
     transition-duration: 0.25s;
   }

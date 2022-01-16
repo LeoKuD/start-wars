@@ -146,16 +146,13 @@ h6 {
 .card p {
   height: 0;
   margin: 0;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
 }
 
 .card_show-info p {
-  transition: 0.1s;
-  opacity: 1;
   height: auto;
+  display: block;
   padding: 0.5rem 1rem;
-  visibility: visible;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -237,7 +234,7 @@ h6 {
   background-color: #bdd2b6;
 }
 
-#menu__toggle {
+#menu-toggle {
   display: none;
 }
 
@@ -250,26 +247,26 @@ h6 {
     order: 2;
   }
 
-  #menu__toggle {
+  #menu-toggle {
     display: block;
     opacity: 0;
   }
 
-  #menu__toggle:checked ~ .menu__btn > span {
+  #menu-toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
   }
 
-  #menu__toggle:checked ~ .menu__btn > span::before {
+  #menu-toggle:checked ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
   }
 
-  #menu__toggle:checked ~ .menu__btn > span::after {
+  #menu-toggle:checked ~ .menu__btn > span::after {
     top: 0;
     transform: rotate(90deg);
   }
 
-  #menu__toggle:checked ~ .left-menu__wrapper {
+  #menu-toggle:checked ~ .left-menu__wrapper {
     visibility: visible;
     left: 0;
   }
@@ -283,7 +280,7 @@ h6 {
     width: 45px;
     height: 1.6rem;
     cursor: pointer;
-    z-index: 1;
+    z-index: 100;
   }
 
   .menu__btn > span,
