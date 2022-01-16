@@ -25,6 +25,17 @@ function createMenuCategory(item) {
 }
 
 function setUrl(category, search='', page='') {
-  console.log(`${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`);
   return `${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`
+}
+
+function clearSearch() {
+  input.value = '';
+  searchMode = false;
+  getData(
+    setUrl(currentCategory, input.value, currentPage),
+    (data) => {
+      fillCards(data.results);
+      createrPagination(data);
+    }
+  );
 }

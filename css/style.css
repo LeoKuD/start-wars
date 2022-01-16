@@ -75,13 +75,13 @@ h6 {
   border: 2px solid #a2b29f;
   outline: none;
 }
-.header form .fa-search {
+.header form .fa-times {
   cursor: pointer;
   color: #a2b29f;
   position: absolute;
   right: 0.5rem;
 }
-.header form .fa-search:hover {
+.header form .fa-times:hover {
   color: #6d8269;
 }
 

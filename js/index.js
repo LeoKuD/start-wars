@@ -2,7 +2,7 @@ const cardsWrapper = document.querySelector('.cards-wrapper');
 const pagination = document.querySelector('.pagination');
 const categoriesMenu = document.querySelector('.left-menu__wrapper');
 const input = document.querySelector('.search__input');
-const searchBtn = document.querySelector('.fa-search');
+const clearSearchBtn = document.querySelector('.fa-times');
 const loader = document.querySelector('.loader');
 const myForm = document.querySelector('.my-form');
 const body = document.body;
@@ -149,7 +149,6 @@ categoriesMenu.addEventListener('click', (e) => {
   }
 });
 
-searchBtn.addEventListener('click', search);
+clearSearchBtn.addEventListener('click', clearSearch);
 myForm.addEventListener('submit', search);
-
 cardsWrapper.addEventListener('click', showInfo);
