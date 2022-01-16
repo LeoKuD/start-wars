@@ -12,8 +12,8 @@ function getData(path, cb) {
       loader.classList.remove(LOADER_CLASS_NAME.loaderVisible);
       cb(data);
     })
-    .catch((e) => {
-      alert('SERVER NOT FOUND');
+    .catch(() => {
+      cardsWrapper.textContent = 'SERVER NOT FOUND'
       loader.classList.remove(LOADER_CLASS_NAME.loaderVisible);
     });
 }
