@@ -133,7 +133,7 @@ h6 {
 
 .cards-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   justify-content: center;
   margin: 0 1rem;
