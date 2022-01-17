@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const cardsWrapper = document.querySelector('.cards-wrapper');
 const pagination = document.querySelector('.pagination');
 const categoriesMenu = document.querySelector('.left-menu__wrapper');
@@ -156,6 +155,3 @@ body.addEventListener('click', (e) => {
     burgerBtn.click();
   }
 });
-=======
-
->>>>>>> a1012af3208b4ba40dc462840840aed0795f9a00
