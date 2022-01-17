@@ -163,7 +163,7 @@ h6 {
 
 .card_show-info p {
   height: auto;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
 }
 .card_show-info .card__drop-down {
   transform: rotate(270deg);
@@ -351,6 +351,7 @@ h6 {
     height: 1.6rem;
     background-color: #f8ede3;
     min-width: auto;
+    z-index: 2;
   }
 
   .left-menu__item {

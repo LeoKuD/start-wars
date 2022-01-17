@@ -5,12 +5,15 @@ const input = document.querySelector('.search__input');
 const clearSearchBtn = document.querySelector('.fa-times');
 const loader = document.querySelector('.loader');
 const myForm = document.querySelector('.my-form');
+const burgerBtn = document.querySelector('.menu__btn');
+const burgerInput = document.getElementById('menu-toggle');
 const body = document.body;
 
 let currentCategory = CATEGORIESKEYS.people;
 let currentPage = 1;
 let searchMode = false;
 const numberElementsOnPage = 10;
+let isActiveBurgerMenu = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   const content = Object.values(CATEGORIESKEYS).map((item) =>
@@ -48,7 +51,9 @@ function createCard(item, index) {
       ? `<div class='card__title'><h3 class='card__title-text'>${name} : ${item[key]}</h3><div class='card__drop-down'></div></div>`
       : `<p>${name} : ${item[key]}</p>`;
   });
-  cardContent.push(`<p> <a target='_blank' href='${item.url}'>more info...</> </p>`);
+  cardContent.push(
+    `<p> <a target='_blank' href='${item.url}'>more info...</> </p>`
+  );
   card.innerHTML = cardContent.join('');
   return card;
 }
@@ -69,9 +74,11 @@ function createrPagination(data) {
           `<li data-index='${item}' class='${
             PAGINATION_CLASS_NAME.paginationItem
           } ${
-            (item === currentPage && !searchMode)
+            item === currentPage && !searchMode
               ? PAGINATION_CLASS_NAME.paginationItemActive
-              : (item === 1 && searchMode ? PAGINATION_CLASS_NAME.paginationItemActive : '')
+              : item === 1 && searchMode
+              ? PAGINATION_CLASS_NAME.paginationItemActive
+              : ''
           }'>${item}</li>`
       );
       pagination.innerHTML = navContent.join('');
@@ -90,12 +97,9 @@ function togglePages(e) {
     e.target.classList.add(PAGINATION_CLASS_NAME.paginationItemActive);
     const page = e.target.getAttribute(ATTRIBUTES_NAME.dataIndex);
     !searchMode && (currentPage = parseInt(page));
-    getData(
-      setUrl(currentCategory, input.value, page),
-      (data) => {
-        fillCards(data.results);
-      }
-    );
+    getData(setUrl(currentCategory, input.value, page), (data) => {
+      fillCards(data.results);
+    });
   }
 }
 
@@ -108,14 +112,7 @@ function search(e) {
       createrPagination(data);
     });
   } else {
-    searchMode = false;
-    getData(
-      setUrl(currentCategory, input.value, currentPage),
-      (data) => {
-        fillCards(data.results);
-        createrPagination(data);
-      }
-    );
+    clearSearch();
   }
 }
 
@@ -152,3 +149,9 @@ categoriesMenu.addEventListener('click', (e) => {
 clearSearchBtn.addEventListener('click', clearSearch);
 myForm.addEventListener('submit', search);
 cardsWrapper.addEventListener('click', showInfo);
+
+body.addEventListener('click', (e) => {
+  if (burgerInput.checked && !e.target.closest('.left-menu')) {
+    burgerBtn.click();
+  }
+});
