@@ -1,24 +1,39 @@
-const cardsWrapper = document.querySelector('.cards-wrapper');
+import {
+  CATEGORYES,
+  CARD_CLASS_NAME,
+  ATTRIBUTES_NAME,
+  LOADER_CLASS_NAME,
+  PAGINATION_CLASS_NAME,
+  LEFT_MENU_CLASS_NAME,
+} from './constants.js';
+
+import {
+  findKey,
+  createMenuCategory,
+  setUrl,
+  clearSearch,
+  setActivePaginationItem,
+} from './helpers.js';
+
+import { getData } from './api.js';
+
+export const cardsWrapper = document.querySelector('.cards-wrapper');
 const pagination = document.querySelector('.pagination');
 const categoriesMenu = document.querySelector('.left-menu__wrapper');
-const input = document.querySelector('.search__input');
+export const input = document.querySelector('.search__input');
 const clearSearchBtn = document.querySelector('.fa-times');
-const loader = document.querySelector('.loader');
 const myForm = document.querySelector('.my-form');
 const burgerBtn = document.querySelector('.menu__btn');
 const burgerInput = document.getElementById('menu-toggle');
 const body = document.body;
 
-let currentCategory = CATEGORIESKEYS.people;
-let currentPage = 1;
-let searchMode = false;
+export let currentCategory = CATEGORYES[0];
+export let currentPage = 1;
+export let searchMode = false;
 const numberElementsOnPage = 10;
-let isActiveBurgerMenu = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const content = Object.values(CATEGORIESKEYS).map((item) =>
-    createMenuCategory(item)
-  );
+  const content = CATEGORYES.map((item) => createMenuCategory(item));
   categoriesMenu.innerHTML = content.join('');
   categoriesMenu.firstElementChild.classList.add(
     LEFT_MENU_CLASS_NAME.leftMenuItemActive
@@ -29,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function fillCards(data) {
+export function fillCards(data) {
   cardsWrapper.textContent = '';
   if (data.length) {
     data.forEach((element, index) => {
@@ -42,11 +57,12 @@ function fillCards(data) {
 
 function createCard(item, index) {
   const selectedCategoryKeysArray = Object.keys(findKey(currentCategory));
+  const selectedCategoryNamesArray = Object.values(findKey(currentCategory));
   const card = document.createElement('div');
   card.className = CARD_CLASS_NAME.card;
   card.setAttribute(ATTRIBUTES_NAME.dataIndex, index);
   const cardContent = selectedCategoryKeysArray.map((key, index) => {
-    let name = findKey(currentCategory)[key];
+    let name = selectedCategoryNamesArray[index];
     return index === 0
       ? `<div class='card__title'><h3 class='card__title-text'>${name} : ${item[key]}</h3><div class='card__drop-down'></div></div>`
       : `<p>${name} : ${item[key]}</p>`;
@@ -58,7 +74,7 @@ function createCard(item, index) {
   return card;
 }
 
-function createrPagination(data) {
+export function createrPagination(data) {
   if (data.count) {
     pagination.classList.remove(PAGINATION_CLASS_NAME.paginationHide);
     pagination.textContent = '';
@@ -73,13 +89,7 @@ function createrPagination(data) {
         (item) =>
           `<li data-index='${item}' class='${
             PAGINATION_CLASS_NAME.paginationItem
-          } ${
-            item === currentPage && !searchMode
-              ? PAGINATION_CLASS_NAME.paginationItemActive
-              : item === 1 && searchMode
-              ? PAGINATION_CLASS_NAME.paginationItemActive
-              : ''
-          }'>${item}</li>`
+          } ${setActivePaginationItem(item)}'>${item}</li>`
       );
       pagination.innerHTML = navContent.join('');
     }
@@ -96,7 +106,7 @@ function togglePages(e) {
     );
     e.target.classList.add(PAGINATION_CLASS_NAME.paginationItemActive);
     const page = e.target.getAttribute(ATTRIBUTES_NAME.dataIndex);
-    !searchMode && (currentPage = parseInt(page));
+    currentPage = searchMode ? currentPage : parseInt(page);
     getData(setUrl(currentCategory, input.value, page), (data) => {
       fillCards(data.results);
     });
@@ -112,7 +122,8 @@ function search(e) {
       createrPagination(data);
     });
   } else {
-    clearSearch();
+    searchMode = false;
+    clearSearch(searchMode);
   }
 }
 
@@ -146,7 +157,10 @@ categoriesMenu.addEventListener('click', (e) => {
   }
 });
 
-clearSearchBtn.addEventListener('click', clearSearch);
+clearSearchBtn.addEventListener('click', () => {
+  clearSearch();
+  searchMode = false;
+});
 myForm.addEventListener('submit', search);
 cardsWrapper.addEventListener('click', showInfo);
 

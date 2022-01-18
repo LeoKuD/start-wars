@@ -1,36 +1,23 @@
-function findKey(category) {
-  switch (category) {
-    case CATEGORIESKEYS.people:
-      return PEOPLE;
-    case CATEGORIESKEYS.planets:
-      return PLANETS;
-    case CATEGORIESKEYS.films:
-      return FILMS;
-    case CATEGORIESKEYS.species:
-      return SPECIES;
-    case CATEGORIESKEYS.vehicles:
-      return VEHICLES;
-    case CATEGORIESKEYS.starships:
-      return STARSHIPS;
+import { CATEGORIESKEYS, PAGINATION_CLASS_NAME } from "./constants.js";
+import { searchMode, currentPage, currentCategory, input, fillCards, createrPagination } from "./index.js";
+import { getData } from "./api.js";
 
-    default:
-      break;
-  }
+export function findKey(category) {
+  return CATEGORIESKEYS[category]
 }
 
-function createMenuCategory(item) {
+export function createMenuCategory(item) {
   return `<li class="left-menu__item" data-category='${item}'><h2 class="left-menu__text">${
     item.charAt(0).toUpperCase() + item.slice(1)
   }</h2></li>`;
 }
 
-function setUrl(category, search='', page='') {
-  return `${category}${search && `/?search=${search}`}${page && `/?page=${page}`}`
+export function setUrl(category, search='', page='') {
+  return `${category}${!searchMode ? '/' : `/?search=${search}`}${searchMode ? `&page=${page}` : `?page=${page}`}`
 }
 
-function clearSearch() {
+export function clearSearch() {
   input.value = '';
-  searchMode = false;
   getData(
     setUrl(currentCategory, input.value, currentPage),
     (data) => {
@@ -38,4 +25,13 @@ function clearSearch() {
       createrPagination(data);
     }
   );
+}
+
+export function setActivePaginationItem(item) {
+  if (item === 1 && searchMode) {
+    return PAGINATION_CLASS_NAME.paginationItemActive
+  }
+  else if (item === currentPage && !searchMode) {
+    return PAGINATION_CLASS_NAME.paginationItemActive
+  }
 }
