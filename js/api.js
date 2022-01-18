@@ -1,6 +1,6 @@
 import { LOADER_CLASS_NAME } from './constants.js';
 import { cardsWrapper } from './index.js';
-const baseURL = 'https://swaspi.dev/api';
+const baseURL = 'https://swapi.dev/api';
 const loader = document.querySelector('.loader');
 
 export function getData(path, cb) {
