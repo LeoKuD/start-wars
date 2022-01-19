@@ -2,7 +2,6 @@ import {
   CATEGORYES,
   CARD_CLASS_NAME,
   ATTRIBUTES_NAME,
-  LOADER_CLASS_NAME,
   PAGINATION_CLASS_NAME,
   LEFT_MENU_CLASS_NAME,
 } from './constants.js';
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = CATEGORYES.map((item) => createMenuCategory(item));
   categoriesMenu.innerHTML = content.join('');
   categoriesMenu.firstElementChild.classList.add(
-    LEFT_MENU_CLASS_NAME.leftMenuItemActive
+    LEFT_MENU_CLASS_NAME.activeItem
   );
   getData(currentCategory, (data) => {
     fillCards(data.results);
@@ -51,7 +50,8 @@ export function fillCards(data) {
       cardsWrapper.append(createCard(element, index++));
     });
   } else {
-    cardsWrapper.textContent = 'Nothing found';
+    cardsWrapper.classList.add('cards-wrapper_error');
+    cardsWrapper.innerHTML = '<h1>Nothing found</h1>';
   }
 }
 
@@ -76,7 +76,7 @@ function createCard(item, index) {
 
 export function createrPagination(data) {
   if (data.count) {
-    pagination.classList.remove(PAGINATION_CLASS_NAME.paginationHide);
+    pagination.classList.remove(PAGINATION_CLASS_NAME.hide);
     pagination.textContent = '';
     const paginationArray = [];
     const countPages = Math.ceil(data.count / numberElementsOnPage);
@@ -88,13 +88,13 @@ export function createrPagination(data) {
       const navContent = paginationArray.map(
         (item) =>
           `<li data-index='${item}' class='${
-            PAGINATION_CLASS_NAME.paginationItem
+            PAGINATION_CLASS_NAME.item
           } ${setActivePaginationItem(item)}'>${item}</li>`
       );
       pagination.innerHTML = navContent.join('');
     }
   } else {
-    pagination.classList.add(PAGINATION_CLASS_NAME.paginationHide);
+    pagination.classList.add(PAGINATION_CLASS_NAME.hide);
   }
 }
 
@@ -102,9 +102,9 @@ function togglePages(e) {
   if (e.target.hasAttribute(ATTRIBUTES_NAME.dataIndex)) {
     let items = document.querySelectorAll('.pagination__item');
     items.forEach((elem) =>
-      elem.classList.remove(PAGINATION_CLASS_NAME.paginationItemActive)
+      elem.classList.remove(PAGINATION_CLASS_NAME.activeItem)
     );
-    e.target.classList.add(PAGINATION_CLASS_NAME.paginationItemActive);
+    e.target.classList.add(PAGINATION_CLASS_NAME.activeItem);
     const page = e.target.getAttribute(ATTRIBUTES_NAME.dataIndex);
     currentPage = searchMode ? currentPage : parseInt(page);
     getData(setUrl(currentCategory, input.value, page), (data) => {
@@ -129,26 +129,26 @@ function search(e) {
 
 function showInfo(e) {
   const elem = e.target.closest(ATTRIBUTES_NAME.dataIndexasAtr);
-  elem && elem.classList.toggle(CARD_CLASS_NAME.cardShowInfo);
+  elem && elem.classList.toggle(CARD_CLASS_NAME.showInfo);
 }
 
 pagination.addEventListener('click', togglePages);
 
 categoriesMenu.addEventListener('click', (e) => {
   if (
-    e.target.className === LEFT_MENU_CLASS_NAME.leftMenuItem ||
-    e.target.className === LEFT_MENU_CLASS_NAME.leftMenuText
+    e.target.className === LEFT_MENU_CLASS_NAME.item ||
+    e.target.className === LEFT_MENU_CLASS_NAME.text
   ) {
     currentPage = 1;
     input.value = '';
     categoriesMenu
       .querySelectorAll('.left-menu__item_active')
       .forEach((item) =>
-        item.classList.remove(LEFT_MENU_CLASS_NAME.leftMenuItemActive)
+        item.classList.remove(LEFT_MENU_CLASS_NAME.activeItem)
       );
     const currentElemets = e.target.closest('[data-category]');
 
-    currentElemets.classList.add(LEFT_MENU_CLASS_NAME.leftMenuItemActive);
+    currentElemets.classList.add(LEFT_MENU_CLASS_NAME.activeItem);
     currentCategory = currentElemets.getAttribute(ATTRIBUTES_NAME.dataCategory);
     getData(currentCategory, (data) => {
       fillCards(data.results);

@@ -29,9 +29,9 @@ export function clearSearch() {
 
 export function setActivePaginationItem(item) {
   if (item === 1 && searchMode) {
-    return PAGINATION_CLASS_NAME.paginationItemActive
+    return PAGINATION_CLASS_NAME.activeItem
   }
   else if (item === currentPage && !searchMode) {
-    return PAGINATION_CLASS_NAME.paginationItemActive
+    return PAGINATION_CLASS_NAME.activeItem
   }
 }

@@ -80,9 +80,30 @@ h6 {
   color: #a2b29f;
   position: absolute;
   right: 0.5rem;
+  margin-right: 3.5rem;
 }
 .header form .fa-times:hover {
   color: #6d8269;
+}
+
+.my-form__button {
+  background-repeat: no-repeat;
+  margin-left: 0.2rem;
+  border-radius: 0.25rem;
+  background-color: #f8ede3;
+  border: 2px solid #a2b29f;
+  outline: none;
+  color: #6d8269;
+  align-self: stretch;
+  cursor: pointer;
+}
+.my-form__button:hover .fa-search {
+  color: #6d8269;
+}
+
+.fa-search {
+  color: #a2b29f;
+  padding: 0 0.5rem;
 }
 
 .contain {
@@ -136,6 +157,11 @@ h6 {
   justify-content: center;
   margin: 0 1rem;
   align-self: flex-start;
+}
+
+.cards-wrapper_error {
+  grid-template-columns: 1fr;
+  text-align: center;
 }
 
 .card {

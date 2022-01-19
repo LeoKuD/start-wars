@@ -83,11 +83,33 @@ h6 {
       color: $bg-color-tertiary;
       position: absolute;
       right: 0.5rem;
+      margin-right: 3.5rem;
       &:hover {
         color: darken($bg-color-tertiary, 20%);
       }
     }
   }
+}
+.my-form__button {
+  background-repeat: no-repeat;
+  margin-left: 0.2rem;
+  border-radius: 0.25rem;
+  background-color: #f8ede3;
+  border: 2px solid #a2b29f;
+  outline: none;
+  color: darken($bg-color-tertiary, 20%);
+  align-self: stretch;
+  cursor: pointer;
+  &:hover {
+    .fa-search {
+      color: darken($bg-color-tertiary, 20%);
+    }
+  }
+}
+
+.fa-search {
+  color: $bg-color-tertiary;
+  padding: 0 0.5rem;
 }
 
 .contain {
@@ -139,7 +161,10 @@ h6 {
   margin: 0 1rem;
   align-self: flex-start;
 }
-
+.cards-wrapper_error {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
 .card {
   display: grid;
   grid-template-columns: 1fr;

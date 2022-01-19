@@ -44,18 +44,18 @@ export const CATEGORIESKEYS = {
 };
 
 export const LEFT_MENU_CLASS_NAME = {
-  leftMenuItemActive: 'left-menu__item_active',
-  leftMenuItem: 'left-menu__item',
-  leftMenuText: 'left-menu__text',
+  activeItem: 'left-menu__item_active',
+  item: 'left-menu__item',
+  text: 'left-menu__text',
 };
 
 export const PAGINATION_CLASS_NAME = {
-  paginationItem: 'pagination__item',
-  paginationItemActive: 'pagination__item_active',
-  paginationHide: 'pagination_hide',
+  item: 'pagination__item',
+  activeItem: 'pagination__item_active',
+  hide: 'pagination_hide',
 };
 export const LOADER_CLASS_NAME = {
-  loaderVisible: 'loader_visible',
+  visible: 'loader_visible',
 };
 
 export const ATTRIBUTES_NAME = {
@@ -66,7 +66,8 @@ export const ATTRIBUTES_NAME = {
 
 export const CARD_CLASS_NAME = {
   card: 'card',
-  cardShowInfo: 'card_show-info',
+  showInfo: 'card_show-info',
+  error: 'cards-wrapper_error',
 };
 
 export const CATEGORYES = Object.keys(CATEGORIESKEYS);
