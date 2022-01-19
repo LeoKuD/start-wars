@@ -12,6 +12,9 @@ import {
   setUrl,
   clearSearch,
   setActivePaginationItem,
+  createCardContent,
+  createPageItem,
+  getCurrntPage,
 } from './helpers.js';
 
 import { getData } from './api.js';
@@ -50,27 +53,22 @@ export function fillCards(data) {
       cardsWrapper.append(createCard(element, index++));
     });
   } else {
-    cardsWrapper.classList.add('cards-wrapper_error');
+    cardsWrapper.classList.add(CARD_CLASS_NAME.error);
     cardsWrapper.innerHTML = '<h1>Nothing found</h1>';
   }
 }
 
 function createCard(item, index) {
-  const selectedCategoryKeysArray = Object.keys(findKey(currentCategory));
-  const selectedCategoryNamesArray = Object.values(findKey(currentCategory));
   const card = document.createElement('div');
+  const selectedCategoryKeys = Object.keys(findKey(currentCategory));
+  const selectedCategoryNames = Object.values(findKey(currentCategory));
   card.className = CARD_CLASS_NAME.card;
   card.setAttribute(ATTRIBUTES_NAME.dataIndex, index);
-  const cardContent = selectedCategoryKeysArray.map((key, index) => {
-    let name = selectedCategoryNamesArray[index];
-    return index === 0
-      ? `<div class='card__title'><h3 class='card__title-text'>${name} : ${item[key]}</h3><div class='card__drop-down'></div></div>`
-      : `<p>${name} : ${item[key]}</p>`;
-  });
-  cardContent.push(
-    `<p> <a target='_blank' href='${item.url}'>more info...</> </p>`
+  card.innerHTML = createCardContent(
+    item,
+    selectedCategoryKeys,
+    selectedCategoryNames
   );
-  card.innerHTML = cardContent.join('');
   return card;
 }
 
@@ -78,19 +76,14 @@ export function createrPagination(data) {
   if (data.count) {
     pagination.classList.remove(PAGINATION_CLASS_NAME.hide);
     pagination.textContent = '';
-    const paginationArray = [];
+    const pageNumbers = [];
     const countPages = Math.ceil(data.count / numberElementsOnPage);
     for (let i = 1; i <= countPages; i++) {
-      paginationArray.push(i);
+      pageNumbers.push(i);
     }
 
-    if (paginationArray.length) {
-      const navContent = paginationArray.map(
-        (item) =>
-          `<li data-index='${item}' class='${
-            PAGINATION_CLASS_NAME.item
-          } ${setActivePaginationItem(item)}'>${item}</li>`
-      );
+    if (pageNumbers.length) {
+      const navContent = pageNumbers.map(item => createPageItem(item));
       pagination.innerHTML = navContent.join('');
     }
   } else {
@@ -106,7 +99,7 @@ function togglePages(e) {
     );
     e.target.classList.add(PAGINATION_CLASS_NAME.activeItem);
     const page = e.target.getAttribute(ATTRIBUTES_NAME.dataIndex);
-    currentPage = searchMode ? currentPage : parseInt(page);
+    currentPage = getCurrntPage(currentPage, searchMode, page)
     getData(setUrl(currentCategory, input.value, page), (data) => {
       fillCards(data.results);
     });
@@ -128,8 +121,7 @@ function search(e) {
 }
 
 function showInfo(e) {
-  const elem = e.target.closest(ATTRIBUTES_NAME.dataIndexasAtr);
-  elem && elem.classList.toggle(CARD_CLASS_NAME.showInfo);
+  e.target.closest(ATTRIBUTES_NAME.dataIndexasAtr)?.classList.toggle(CARD_CLASS_NAME.showInfo);
 }
 
 pagination.addEventListener('click', togglePages);

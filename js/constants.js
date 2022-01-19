@@ -54,6 +54,7 @@ export const PAGINATION_CLASS_NAME = {
   activeItem: 'pagination__item_active',
   hide: 'pagination_hide',
 };
+
 export const LOADER_CLASS_NAME = {
   visible: 'loader_visible',
 };
