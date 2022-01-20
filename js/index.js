@@ -93,7 +93,7 @@ export function createrPagination(data) {
 
 function togglePages(e) {
   if (e.target.hasAttribute(ATTRIBUTES_NAME.dataIndex)) {
-    let items = document.querySelectorAll('.pagination__item');
+    const items = document.querySelectorAll('.pagination__item');
     items.forEach((elem) =>
       elem.classList.remove(PAGINATION_CLASS_NAME.activeItem)
     );
